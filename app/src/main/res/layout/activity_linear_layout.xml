@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LinearLayoutActivity"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Foodie App"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/round_corner_box"
+        android:padding="15dp" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_corner_box"
+        android:padding="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/round_corner_button"
+        android:text="SIGN IN"
+        android:textSize="18sp"
+        android:textColor="#10C0D6"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

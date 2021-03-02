@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelativeLayoutActivity"
+    android:background="@drawable/orange_gradient">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurants"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="325dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="18dp"
+        android:elevation="@dimen/cardview_default_radius"
+        app:cardBackgroundColor="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/food1">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Ice Cream Sundae"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv1"
+                android:textSize="19sp"
+                android:textColor="#5A5454"
+                android:text="145 Mall Of India"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="12dp"/>
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@id/tv2"
+                android:progressTint="#FF9800"
+                android:numStars="5"
+                android:rating="3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="520 reviews"
+                android:textSize="15sp"
+                android:textColor="#5A5454"
+                android:layout_toRightOf="@id/rating"
+                android:layout_marginTop="265dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
