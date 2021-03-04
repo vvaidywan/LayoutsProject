@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LayoutsProject">
-        <activity android:name=".RecyclerViewActivity"></activity>
+        <activity android:name=".PaginationActivity"></activity>
+        <activity android:name=".HeterogeneousActivity" />
+        <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".RelativeLayoutActivity" />
         <activity android:name=".LinearLayoutActivity" />

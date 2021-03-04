@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
         val btn4 = findViewById<Button>(R.id.btn4)
+        val btn5 = findViewById<Button>(R.id.btn5)
+        val btn6 = findViewById<Button>(R.id.btn6)
 
         btn1.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@MainActivity, LinearLayoutActivity::class.java)
@@ -33,6 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         btn4.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@MainActivity, RecyclerViewActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn5.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@MainActivity, HeterogeneousActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn6.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@MainActivity, PaginationActivity::class.java)
             startActivity(intent)
         })
     }
