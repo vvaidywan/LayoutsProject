@@ -3,6 +3,7 @@ package com.example.layoutsproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,9 @@ class PaginationActivity : AppCompatActivity() {
 
     private var startPage = 1
     private var isLoading = false
-    private val limit = 14
+    private val limit = 4
+
+    private var progressBar : ProgressBar? = null
 
     private lateinit var recyclerView2: RecyclerView
     private lateinit var multiViewRecyclerAdapter: MultiViewRecyclerAdapter
@@ -24,30 +27,29 @@ class PaginationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagination)
 
+        progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+
         recyclerView2 = findViewById(R.id.recyclerView2)
 
         layoutManager = LinearLayoutManager(applicationContext)
         recyclerView2.layoutManager = layoutManager
 
+        multiViewRecyclerAdapter = MultiViewRecyclerAdapter(this, listViewType2)
+        recyclerView2.adapter = multiViewRecyclerAdapter
+
+        //getPage()
         getPage()
+        //checkForPagination()
+        Handler().post({checkForPagination()})
 
         recyclerView2.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView2: RecyclerView, dx: Int, dy: Int) {
 
                 // dy means vertical scroll position
                 if (dy > 0) {
-                    val visibleItemCount = layoutManager.childCount
-                    val totalItemCount = layoutManager.itemCount
-                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-                    // use isLastPage to stop when last page shown
-                    // to the users
-                    if (!isLoading) {
-                        if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount) {
-                            startPage++
-                            getPage()
-                        }
-                    }
+                    Log.e("value of dy" , "dy " + dy )
+                    checkForPagination()
                 }
                 super.onScrolled(recyclerView2, dx, dy)
             }
@@ -55,16 +57,49 @@ class PaginationActivity : AppCompatActivity() {
     }
 
     private fun getPage() {
-        isLoading = true
 
+        Log.e("get Page TAG", startPage.toString())
         // When loading
         // show progressBar
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
+
 
         // For endless scrolling
+        addDataInList()
+        // Adding delay of 2 seconds
+
+                progressBar!!.visibility = View.GONE
+
+                multiViewRecyclerAdapter.notifyDataSetChanged()
+                isLoading = false
+
+
+    }
+    private fun checkForPagination(){
+        val visibleItemCount = layoutManager.childCount
+        val totalItemCount = layoutManager.itemCount
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+        // use isLastPage to stop when last page shown
+        // to the users
+        Log.e("Scrolled View variables", "visibleItemCount" + visibleItemCount)
+        Log.e("Scrolled View variables", "totalItemCount" + totalItemCount)
+        Log.e("Scrolled View variables", "firstVisibleItemPosition" + firstVisibleItemPosition)
+        if (!isLoading) {
+            if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount) {
+                startPage++
+                progressBar!!.visibility = View.VISIBLE
+                isLoading = true
+                Handler().postDelayed({getPage()}, 2000)
+            }
+        }
+    }
+
+
+    private fun addDataInList(){
         val start = (startPage - 1) * limit
         val end = (startPage) * limit
+        //val start = 1
+        //val end = 5
 
         for (i in start..end) {
             when {
@@ -79,21 +114,5 @@ class PaginationActivity : AppCompatActivity() {
                 }
             }
         }
-        // Adding delay of 2 seconds
-        Handler().postDelayed(
-            {
-                if (::multiViewRecyclerAdapter.isInitialized) {
-                    // Adapter is already initialized
-                    // Just update the data
-                    multiViewRecyclerAdapter.notifyDataSetChanged()
-                } else {
-                    // attach adapter to recycler view
-                    multiViewRecyclerAdapter = MultiViewRecyclerAdapter(this, listViewType2)
-                    recyclerView2.adapter = multiViewRecyclerAdapter
-                }
-                isLoading = false
-                progressBar.visibility = View.GONE
-            }, 2000
-        )
     }
 }
